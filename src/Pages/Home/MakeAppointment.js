@@ -12,8 +12,8 @@ const MakeAppointment = () => {
         </div>
         <div className="flex-1 text-white">
           <h3 className="text-primary text-xl">Appointment</h3>
-          <h2 className="text-4xl">Make an appointment Today</h2>
-          <p>
+          <h2 className="text-3xl my-4">Make an appointment Today</h2>
+          <p className="pr-5 mb-5">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsumis that it has a more-or-less normal

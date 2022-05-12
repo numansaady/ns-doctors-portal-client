@@ -3,6 +3,9 @@ import footerBg from '../../assets/images/footer.png';
 
 
 const Footer = () => {
+  const date = new Date();
+  const fullYear = date.getFullYear();
+
   return (
     <footer class="" style={{background: `url(${footerBg})`,
     backgroundSize: "cover"
@@ -30,7 +33,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-center p-4">
-        <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright &copy; {fullYear} - All right reserved</p>
       </div>
     </footer>
   );
