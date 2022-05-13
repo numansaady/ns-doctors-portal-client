@@ -9,7 +9,7 @@ const ContactForm = () => {
         <h3 className="text-primary text-xl">Connect Us</h3>
         <h2 className="text-4xl text-white">Stay Connected With Us</h2>
       </div>
-      <div class="flex flex-col w-96 mx-auto">
+      <div className="flex flex-col w-96 mx-auto">
         <input className="mb-3 h-10 rounded pl-2" type="email" placeholder="Email Address"  />
         <input className="mb-3 h-10 rounded pl-2" type="text" placeholder="Subject"  />
         <textarea placeholder="Your Message" className="h-16 rounded pl-2"></textarea>
