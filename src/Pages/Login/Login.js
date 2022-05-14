@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle
@@ -27,9 +27,11 @@ const Login = () => {
 
   let from = location.state?.from?.pathname || "/";
 
-  if (gLoading || epLoading) {
-    return <Loading />;
-  }
+  useEffect(()=>{
+    if (gLoading || epLoading) {
+      return <Loading />;
+    }
+  },[gLoading, epLoading])
 
   if (gError || epError) {
     signInError = (
