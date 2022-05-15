@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import {
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle
+  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useLocation } from "react-router-dom";
@@ -27,11 +27,11 @@ const Login = () => {
 
   let from = location.state?.from?.pathname || "/";
 
-  useEffect(()=>{
+  useEffect(() => {
     if (gLoading || epLoading) {
       return <Loading />;
     }
-  },[gLoading, epLoading])
+  }, [gLoading, epLoading]);
 
   if (gError || epError) {
     signInError = (
@@ -43,7 +43,7 @@ const Login = () => {
 
   if (gUser || epUser) {
     console.log(gUser, epUser);
-    navigate(from, {replace: true});
+    navigate(from, { replace: true });
   }
 
   const onSubmit = (data) => {
@@ -125,9 +125,17 @@ const Login = () => {
             {signInError}
             <input className="btn btn-block" type="submit" value="Login" />
           </form>
-          <p>New to Doctors Portal <span className="text-primary"><Link to="/signup">Create New Account</Link></span></p>
+          <p>
+            New to Doctors Portal{" "}
+            <span className="text-primary">
+              <Link to="/signup">Create New Account</Link>
+            </span>
+          </p>
           <div className="divider">OR</div>
-          <button onClick={() => signInWithGoogle()} className="btn btn-outline">
+          <button
+            onClick={() => signInWithGoogle()}
+            className="btn btn-outline"
+          >
             Continue with Google
           </button>
         </div>
