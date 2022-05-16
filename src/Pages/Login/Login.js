@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import {
   useSignInWithEmailAndPassword,
-  useSignInWithGoogle,
+  useSignInWithGoogle
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../../hooks/useToken";
 import Loading from "../Shared/Loading";
 
 const Login = () => {
@@ -20,18 +21,23 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
+  const [token] = useToken(gUser || epUser);
+  
   let signInError;
 
   let navigate = useNavigate();
   let location = useLocation();
-
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (gLoading || epLoading) {
-      return <Loading />;
+    if (token) {
+      navigate(from, { replace: true });
     }
-  }, [gLoading, epLoading]);
+  }, [token, from, navigate]);
+
+  if (gLoading || epLoading) {
+    return <Loading />;
+  }
 
   if (gError || epError) {
     signInError = (
@@ -39,11 +45,6 @@ const Login = () => {
         {gError?.message} || {epError?.message}
       </p>
     );
-  }
-
-  if (gUser || epUser) {
-    console.log(gUser, epUser);
-    navigate(from, { replace: true });
   }
 
   const onSubmit = (data) => {

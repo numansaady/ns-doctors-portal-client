@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -26,6 +26,12 @@ const SignUp = () => {
     handleSubmit, reset
   } = useForm();
 
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token, navigate]);
+  
   let signInError;
   if (gError || epError || updateError) {
     signInError = (
@@ -38,9 +44,7 @@ const SignUp = () => {
     return <Loading />;
   }
 
-  if (token) {   
-    navigate('/appointment')
-  }
+
 
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
